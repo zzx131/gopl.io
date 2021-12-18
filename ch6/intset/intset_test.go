@@ -21,6 +21,21 @@ func Example_one() {
 	fmt.Println(x.String()) // "{1 9 42 144}"
 
 	fmt.Println(x.Has(9), x.Has(123)) // "true false"
+
+	x.Remove(9)
+	fmt.Println(x.Has(9)) // "false"
+	fmt.Println(x.Len())  // 3
+
+	x.Clear()
+	fmt.Println(x.Len()) // 0
+
+	var z *IntSet
+	z = y.Copy()
+	fmt.Println(z.String()) // "{9 42}"
+
+	z.AddAll(1, 2, 3)
+	fmt.Println(z.String()) // {"1 2 3 9 42"}
+
 	//!-main
 
 	// Output:
@@ -28,6 +43,11 @@ func Example_one() {
 	// {9 42}
 	// {1 9 42 144}
 	// true false
+	// false
+	// 3
+	// 0
+	// {9 42}
+	// {1 2 3 9 42}
 }
 
 func Example_two() {
@@ -47,4 +67,27 @@ func Example_two() {
 	// {1 9 42 144}
 	// {1 9 42 144}
 	// {[4398046511618 0 65536]}
+}
+
+func Example_three() {
+	var x, y IntSet
+	x.AddAll(1, 2, 3)
+	y.AddAll(2, 5, 6)
+	var z *IntSet
+	z = x.IntersectWith(&y)
+	fmt.Println(z.String()) // {"2"}
+
+	z = x.DifferenceWith(&y)
+	fmt.Println(z.String()) // {"1 3"}
+
+	z = x.SymmetricDifference(&y)
+	fmt.Println(z.String()) // {"1 3 5 6"}
+
+	fmt.Println(z.Elems())
+	// Output:
+	// {2}
+	// {1 3}
+	// {1 3 5 6}
+	// [1 3 5 6]
+
 }
