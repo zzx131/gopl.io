@@ -17,6 +17,7 @@ import (
 func main() {
 	counts := make(map[string]int)
 	files := os.Args[1:]
+	fmt.Println("文件个数：", len(files))
 	if len(files) == 0 {
 		countLines(os.Stdin, counts)
 	} else {
