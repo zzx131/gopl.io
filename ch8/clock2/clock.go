@@ -7,6 +7,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -25,7 +27,11 @@ func handleConn(c net.Conn) {
 }
 
 func main() {
-	listener, err := net.Listen("tcp", "localhost:8000")
+	//  修改clock2来支持传入参数作为端口号
+	port := flag.String("port", "8000", "端口号")
+	flag.Parse()
+	fmt.Println("端口号：", *port)
+	listener, err := net.Listen("tcp", "localhost:"+*port)
 	if err != nil {
 		log.Fatal(err)
 	}
