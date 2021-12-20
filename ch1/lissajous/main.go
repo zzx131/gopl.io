@@ -8,21 +8,18 @@
 // Lissajous generates GIF animations of random Lissajous figures.
 package main
 
+//!-main
+// Packages not needed by version in book.
 import (
 	"image"
 	"image/color"
 	"image/gif"
 	"io"
+	"log"
 	"math"
 	"math/rand"
-	"os"
-)
-
-//!-main
-// Packages not needed by version in book.
-import (
-	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
