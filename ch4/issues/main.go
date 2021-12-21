@@ -10,14 +10,15 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 
 	"gopl.io/ch4/github"
 )
 
 //!+
 func main() {
-	result, err := github.SearchIssues(os.Args[1:])
+	flag := []string{"repo:golang/go", "json", "decoder"}
+	// result, err := github.SearchIssues(os.Args[1:])
+	result, err := github.SearchIssues(flag)
 	if err != nil {
 		log.Fatal(err)
 	}
