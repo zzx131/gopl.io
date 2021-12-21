@@ -9,7 +9,10 @@ package main
 
 import (
 	"fmt"
+	"io/fs"
+	"io/ioutil"
 	"math"
+	"strconv"
 )
 
 const (
@@ -27,6 +30,10 @@ func main() {
 	fmt.Printf("<svg xmlns='http://www.w3.org/2000/svg' "+
 		"style='stroke: grey; fill: white; stroke-width: 0.7' "+
 		"width='%d' height='%d'>", width, height)
+
+	testSvg := "<svg xmlns='http://www.w3.org/2000/svg' " +
+		"style='stroke: grey; fill: white; stroke-width: 0.7' " +
+		"width='" + string(rune(width)) + "' height='" + string(rune(height)) + "'>"
 	for i := 0; i < cells; i++ {
 		for j := 0; j < cells; j++ {
 			ax, ay := corner(i+1, j)
@@ -35,9 +42,13 @@ func main() {
 			dx, dy := corner(i+1, j+1)
 			fmt.Printf("<polygon points='%g,%g %g,%g %g,%g %g,%g'/>\n",
 				ax, ay, bx, by, cx, cy, dx, dy)
+			testSvg += "<polygon points='" + strconv.FormatFloat(ax, 'g', 5, 32) + "," + strconv.FormatFloat(ay, 'g', 5, 32) + " " +
+				strconv.FormatFloat(bx, 'g', 5, 32) + "," + strconv.FormatFloat(by, 'g', 5, 32) + " " + strconv.FormatFloat(cx, 'g', 5, 32) + " ," + strconv.FormatFloat(cy, 'g', 5, 32) + "  " + strconv.FormatFloat(dx, 'g', 5, 32) + " ," + strconv.FormatFloat(dy, 'g', 5, 32) + " '/>\n"
 		}
 	}
 	fmt.Println("</svg>")
+	testSvg += "</svg>"
+	ioutil.WriteFile("test.svg", []byte(testSvg), fs.ModeAppend)
 }
 
 func corner(i, j int) (float64, float64) {
