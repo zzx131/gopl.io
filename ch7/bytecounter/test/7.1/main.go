@@ -28,6 +28,7 @@ func (c *WordsCounter) Write(content []byte) (int, error) {
 
 type LineCounter int
 
+// Write 统计行数
 func (c *LineCounter) Write(content []byte) (int, error) {
 	for start := 0; start < len(content); {
 		advance, _, err := bufio.ScanLines(content[start:], true)
