@@ -35,7 +35,7 @@ func CountingWriter(write io.Writer) (io.Writer, *int) {
 func main() {
 	cw, counter := CountingWriter(os.Stdout)
 
-	fmt.Fprintf(cw, "%s", "Print something to the screen ...")
+	fmt.Fprintf(cw, "%s", "Print something to the screen...")
 
 	fmt.Println(*counter)
 
