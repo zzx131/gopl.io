@@ -23,8 +23,10 @@ func main() {
 		rotatelogs.WithRotationTime(time.Duration(24)*time.Hour),
 	)
 
-	app.Logger().SetOutput(writer)    //日志写入文件
-	app.Logger().AddOutput(os.Stdout) //日志同时写入控制台，如果不想显示控制台可注释此语句
+	// 日志写入文件
+	app.Logger().SetOutput(writer)
+	// 日志同时写入控制台，如果不想显示控制台可注释此语句
+	app.Logger().AddOutput(os.Stdout)
 
 	// 记录路由日志
 	app.Use(logger.New(logger.Config{
