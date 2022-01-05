@@ -1,11 +1,43 @@
 package main
 
 import (
+	"os"
+	"time"
+
 	"github.com/kataras/iris/v12"
+	"github.com/kataras/iris/v12/middleware/logger"
+	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 )
 
 func main() {
 	app := iris.New()
+
+	path := "iris"
+
+	writer, _ := rotatelogs.New(
+		path+"-%Y-%m-%d.log",
+		rotatelogs.WithLinkName(path),
+		rotatelogs.WithMaxAge(time.Duration(180)*time.Second),
+
+		//这里设置1分钟产生一个日志文件
+		rotatelogs.WithRotationTime(time.Duration(24)*time.Hour),
+	)
+
+	app.Logger().SetOutput(writer)    //日志写入文件
+	app.Logger().AddOutput(os.Stdout) //日志同时写入控制台，如果不想显示控制台可注释此语句
+
+	// 记录路由日志
+	app.Use(logger.New(logger.Config{
+		Status:     true,
+		IP:         true,
+		Method:     true,
+		Path:       true,
+		Query:      true,
+		LogFunc:    nil,
+		LogFuncCtx: nil,
+		Skippers:   nil,
+	}))
+
 	app.Get("/", func(ctx iris.Context) {
 		ctx.HTML("<b>Hello!</b>")
 	})
