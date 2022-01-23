@@ -18,7 +18,7 @@ const (
 	defaultlogfilemaxbackups = 10              // 【日志分割】  【默认】日志备份文件最多数量
 	logmaxage                = 1000            // 【默认】日志保留时间，单位: 天 (day)
 	logcompress              = false           // 【默认】是否压缩日志
-	logstdout                = false           // 【默认】是否输出到控制台
+	logstdout                = true            // 【默认】是否输出到控制台
 )
 
 var loggerC *zap.SugaredLogger // 定义日志打印全局变量
@@ -59,8 +59,8 @@ func initlogger() error {
 // 编码器(如何写入日志)
 func getencoder() zapcore.Encoder {
 	encoderconfig := zap.NewProductionEncoderConfig()
-	encoderconfig.EncodeTime = zapcore.ISO8601TimeEncoder        // looger 时间格式 例如: 2021-09-11t20:05:54.852+0800
-	encoderconfig.EncodeLevel = zapcore.CapitalColorLevelEncoder // 输出level序列化为全大写字符串，如 info debug error
+	encoderconfig.EncodeTime = zapcore.TimeEncoderOfLayout("2006-01-02 15:04:05") // looger 时间格式 例如: 2021-09-11t20:05:54.852+0800
+	encoderconfig.EncodeLevel = zapcore.CapitalColorLevelEncoder                  // 输出level序列化为全大写字符串，如 info debug error
 	//encoderconfig.encodecaller = zapcore.fullcallerencoder
 	//encoderconfig.encodelevel = zapcore.capitalcolorlevelencoder
 	if *format == "json" {
