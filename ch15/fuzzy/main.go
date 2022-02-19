@@ -9,6 +9,9 @@ import (
 
 func main() {
 	byt, _ := ioutil.ReadFile("./doc.txt")
-	result := strings.Split(string(byt), "\n")
-	fmt.Println(fuzzy.Find("小明", result))
+	stringArray := make([]string, 0)
+	stringArray = append(stringArray, string(byt))
+
+	fmt.Println(strings.Contains(string(byt), "小明"))
+	fmt.Println(fuzzy.Find("小明 ", stringArray))
 }
