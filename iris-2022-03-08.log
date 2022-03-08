@@ -1,4 +1,0 @@
-Now listening on: http://localhost:8080
-Application started. Press CTRL+C to shut down.
-[INFO] 2022/03/08 15:51 200 35.856320808s ::1 POST /readJson
-[INFO] 2022/03/08 15:51 200 2.944658468s ::1 POST /readJson
