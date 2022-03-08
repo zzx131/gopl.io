@@ -22,7 +22,7 @@ func main() {
 	})
 	app.Configure(iris.WithConfiguration(iris.Configuration{DisableStartupLog: false}))
 	// 通过YAML配置文件
-	app.Run(iris.Addr(":8080"), iris.WithConfiguration(iris.YAML("./config/iris.yml")))
+	app.Run(iris.Addr(":8080"), iris.WithConfiguration(iris.YAML("/home/zzx/go-proj/GOPATH/src/gopl.io/ch15/iris/config/iris.yml")))
 }
 
 func accesslog(app *iris.Application) {

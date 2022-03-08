@@ -21,5 +21,8 @@ func main() {
 	user.Name = "张三"
 	user.Age = 10
 	ub, _ := json.Marshal(user)
+
+	userResult := new(User)
+	json.Unmarshal(ub, userResult)
 	fmt.Println(string(ub))
 }
