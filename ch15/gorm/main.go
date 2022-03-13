@@ -38,7 +38,7 @@ func main() {
 		fmt.Printf("%v", err)
 	}
 	user := make([]SysUser, 0)
-	db.Preload("Roles").Find(&user)
+	db.Preload("Roles").Limit(4).Offset(1).Find(&user)
 	fmt.Printf("%v\n", user)
 }
 
