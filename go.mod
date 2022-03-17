@@ -15,6 +15,7 @@ require (
 	github.com/xujiajun/nutsdb v0.7.1
 	go.uber.org/dig v1.14.0
 	go.uber.org/zap v1.21.0
+	golang.org/x/exp v0.0.0-20220317015231-48e79f11773a
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f
 	golang.org/x/oauth2 v0.0.0-20220309155454-6242fa91716a
 	gopkg.in/alecthomas/kingpin.v2 v2.2.6
