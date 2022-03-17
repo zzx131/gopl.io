@@ -1,10 +1,10 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/go-oauth2/oauth2/v4/generates"
 	"io"
 	"log"
 	"net/http"
@@ -12,6 +12,8 @@ import (
 	"net/url"
 	"os"
 	"time"
+
+	"github.com/go-oauth2/oauth2/v4/generates"
 
 	"github.com/go-oauth2/oauth2/v4/errors"
 	"github.com/go-oauth2/oauth2/v4/manage"
@@ -62,7 +64,7 @@ func main() {
 
 	srv := server.NewServer(server.NewConfig(), manager)
 
-	srv.SetPasswordAuthorizationHandler(func(username, password string) (userID string, err error) {
+	srv.SetPasswordAuthorizationHandler(func(ctx context.Context, username, password string) (userID string, err error) {
 		if username == "test" && password == "test" {
 			userID = "test"
 		}

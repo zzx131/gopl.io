@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -40,7 +41,7 @@ func main() {
 		log.Println("Response Error:", re.Error.Error())
 	})
 
-	srv.SetPasswordAuthorizationHandler(func(username, password string) (userID string, err error) {
+	srv.SetPasswordAuthorizationHandler(func(ctx context.Context, username, password string) (userID string, err error) {
 		if username == "test" && password == "test" {
 			userID = "test"
 		}
