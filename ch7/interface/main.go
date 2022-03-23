@@ -1,4 +1,4 @@
-// myInterfaceChg project main.go
+// myInterfaceChg project const_test.go
 package main
 
 import (

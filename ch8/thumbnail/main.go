@@ -1,6 +1,7 @@
 // Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
 // License: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
+//go:build ignore
 // +build ignore
 
 // The thumbnail command produces thumbnails of JPEG files
@@ -11,7 +12,7 @@
 // this:
 //
 // Run with:
-//   $ go run $GOPATH/src/gopl.io/ch8/thumbnail/main.go
+//   $ go run $GOPATH/src/gopl.io/ch8/thumbnail/const_test.go
 //   foo.jpeg
 //   ^D
 //
