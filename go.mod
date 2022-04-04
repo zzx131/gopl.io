@@ -3,6 +3,7 @@ module gopl.io
 go 1.18
 
 require (
+	github.com/duke-git/lancet/v2 v2.0.1
 	github.com/gin-gonic/gin v1.7.7
 	github.com/go-oauth2/oauth2/v4 v4.4.3
 	github.com/go-session/session v3.1.2+incompatible
@@ -36,7 +37,6 @@ require (
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/aymerick/raymond v2.0.3-0.20180322193309-b565731e1464+incompatible // indirect
 	github.com/bwmarrin/snowflake v0.3.0 // indirect
-	github.com/duke-git/lancet/v2 v2.0.1 // indirect
 	github.com/eknkc/amber v0.0.0-20171010120322-cdade1c07385 // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/flosch/pongo2/v4 v4.0.2 // indirect
