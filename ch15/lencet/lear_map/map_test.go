@@ -36,3 +36,8 @@ func TestMapSort(t *testing.T) {
 		fmt.Println(oneMap[keyv])
 	}
 }
+
+func TestNewMap(t *testing.T) {
+	// oneMap := new(map[string]int)
+	// oneMap["one"] = 1
+}
