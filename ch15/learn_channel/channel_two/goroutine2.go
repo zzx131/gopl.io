@@ -20,7 +20,6 @@ func sendData(ch chan string) {
 }
 func getData(ch chan string) {
 	var input string
-	time.Sleep(1 * time.Second)
 	for {
 		input = <-ch
 		fmt.Printf("%s ", input)
