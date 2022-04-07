@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// 通道,time 包中有一些有趣的功能可以和通道组合使用
 func main() {
 	tick := time.Tick(1e8)
 	boom := time.After(5e8)
