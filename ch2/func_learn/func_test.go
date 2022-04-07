@@ -37,3 +37,24 @@ func TestDefer(t *testing.T) {
 func function1() {
 	fmt.Println("the defer func")
 }
+
+func TestFuncNoName(t *testing.T) {
+	// sum := 1
+	// func(sum int) {
+	// 	for i := 1; i <= 100; i++ {
+	// 		sum += i
+	// 	}
+	// 	fmt.Println("insum===", sum)
+	// }(sum)
+	// fmt.Println("outsum", sum)
+
+	sum := 1
+	f := func() {
+		for i := 1; i <= 100; i++ {
+			sum += i
+		}
+		fmt.Println("insum===", sum)
+	}
+	f()
+	fmt.Println("outsum", sum)
+}
