@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 )
 
 type Common struct {
@@ -25,4 +27,13 @@ func main() {
 	userResult := new(User)
 	json.Unmarshal(ub, userResult)
 	fmt.Println(string(ub))
+
+	// using an encoder:
+	file, _ := os.OpenFile("user.json", os.O_CREATE|os.O_WRONLY, 0666)
+	defer file.Close()
+	enc := json.NewEncoder(file)
+	err := enc.Encode(user)
+	if err != nil {
+		log.Println("Error in encoding json")
+	}
 }
