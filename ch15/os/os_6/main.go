@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-// 文件写入
+// 带缓冲文件写入
 func main() {
 	outPutFile, outputErr := os.OpenFile("output.dat", os.O_WRONLY|os.O_CREATE, 0666)
 	if outputErr != nil {
