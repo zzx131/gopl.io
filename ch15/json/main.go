@@ -36,4 +36,9 @@ func main() {
 	if err != nil {
 		log.Println("Error in encoding json")
 	}
+	/// using an decoder
+	fileDe, _ := os.Open("user.json")
+	dec := json.NewDecoder(fileDe)
+	dec.Decode(user)
+	fmt.Println(user.Name)
 }
