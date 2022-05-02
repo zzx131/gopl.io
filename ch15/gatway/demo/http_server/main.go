@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -22,6 +24,11 @@ func main() {
 }
 
 func sayBye(w http.ResponseWriter, r *http.Request) {
-	time.Sleep(1 * time.Second)
+	// time.Sleep(1 * time.Second)
+	var requestMap = make(map[string]any)
+	err := json.NewDecoder(r.Body).Decode(&requestMap)
+	if err != nil {
+		fmt.Printf("json decode err %v", err)
+	}
 	w.Write([]byte("bye bye, this is httpServer"))
 }

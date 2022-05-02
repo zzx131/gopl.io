@@ -1,12 +1,19 @@
 package main
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net"
 	"net/http"
 	"time"
 )
+
+type UserData struct {
+	Id   int32
+	Name string
+}
 
 func main() {
 	// 创建连接池
@@ -25,8 +32,16 @@ func main() {
 		Timeout:   time.Second * 30,
 		Transport: transport,
 	}
-	// 发送请求
-	resp, err := client.Get("http://127.0.0.1:1210/bye")
+	// 发送Post请求
+	var reqData = &UserData{
+		Id:   1,
+		Name: "zhangsan",
+	}
+	byteReq, _ := json.Marshal(reqData)
+	resp, err := client.Post("http://127.0.0.1:1210/bye", "application/json", bytes.NewReader(byteReq))
+
+	// 发送get请求
+	// resp, err := client.Get("http://127.0.0.1:1210/bye")
 	if err != nil {
 		panic(err)
 	}
