@@ -5,10 +5,11 @@ import (
 	"net"
 )
 
+// tcp 服务端
 func main() {
 	fmt.Println("Starting the server ...")
 	// 1,创建 listener
-	listener, err := net.Listen("tcp", "localhost:5000")
+	listener, err := net.Listen("tcp", "0.0.0.0:8070")
 	if err != nil {
 		fmt.Println("Error listening", err.Error())
 		return
@@ -17,20 +18,22 @@ func main() {
 		conn, err := listener.Accept()
 		if err != nil {
 			fmt.Println("Error accepting", err.Error())
-			return
+			continue
 		}
 		go doServerStuff(conn)
 	}
 }
 
 func doServerStuff(conn net.Conn) {
+	defer conn.Close()
 	for {
-		buf := make([]byte, 512)
-		len, err := conn.Read(buf)
+		var buf [128]byte
+		n, err := conn.Read(buf[:])
 		if err != nil {
-			fmt.Println("Error reading", err.Error())
-			return
+			fmt.Printf("read from connect failed, err:%v\n")
+			break
 		}
-		fmt.Printf("Received data:%v", string(buf[:len]))
+		str := string(buf[:n])
+		fmt.Printf("receive from client, data:%v", str)
 	}
 }
